@@ -1,15 +1,15 @@
-=== Welcome to Fat Free CRM!
+=== Welcome to Fat Free CRM modified version with Google Calendar Integrated
+This is a modified version of Fat Free CRM that has google calendar integrated.
+I fixed some bug found in the original version during development. 
 
-Fat Free CRM is next generation open source CRM platform. Active development
-has started in November 2008; new features, enhancements, and updates appear
-on daily basis.
-
-Here are the steps to get Fat Free CRM up and running on your system.
-
+The original version of Fat Free CRM can be found at https://github.com/michaeldv/fat_free_crm.
+In this modified version, I added 2 plugins and modified them so that they can work correctly.
+* crm_google_account_settings module https://github.com/tractis/crm_google_account_settings
+* crm_google_calendar module https://github.com/tractis/crm_google_calendar 
 
 === System Requirements
 
-* Ruby v1.8.7 or v1.9.2
+* Ruby v1.9.2
 * MySQL v4.1.1 or later (v5+ is recommended), SQLite v3.4 or later, or Postgres 8.4.8 or later.
 * ImageMagick (optional, only if you would like to use avatars)
 
@@ -17,39 +17,16 @@ Here are the steps to get Fat Free CRM up and running on your system.
 
 === Downloads
 
-* Git source code repository: git://github.com/michaeldv/fat_free_crm.git
-* .zip or .tgz archives: http://github.com/michaeldv/fat_free_crm/downloads
-
-
-=== Upgrading from a previous version of Fat Free CRM
-
-If you are upgrading from version 0.10.1 or below, your database schema
-needs to be updated. After you have installed the latest Rails 3 version,
-please run the following commands in this order:
-
-   $ bundle install              # Installs gem dependencies
-   $ rake crm:upgrade:schema     # Updates your old schema to use the new timestamped migrations
-   $ rake db:migrate             # Runs the new database migrations.
-
+* Git source code repository: https://github.com/swarut/Modified-FFCRM-with-GCalendar-integrated
 
 === Setting Up The Database Configuration
 
-Fat Free CRM supports MySQL and SQLite databases. The source code comes with
-two sample database configuration files: +config+/+database+.+mysql+.+yml+
-for MySQL and +config+/+database+.+sqlite+.+yml+ for SQLite. Based on your choice
-of the database create the actual database configuration file, for example:
-
-   $ cp config/database.mysql.yml config/database.yml
-
-Edit config/database.yml and specify database names and authentication
-details.
+For the ease of installation, I set sqlite as default database. To change this setting,
+edit config/database.yml and specify database names and authentication details.
 
 
 === Installing Gem Dependencies
-
-Fat Free CRM includes a 'smart' Gemfile that detects your chosen database,
-and installs the required gems. After you have configured your database.yml file,
-run the following command from the applications root directory:
+On terminal, run:
 
     $ bundle install
 
@@ -58,7 +35,8 @@ run the following command from the applications root directory:
 
 Now you are ready to create the database:
 
-   $ rake db:create
+   $ bundle exec rake db:create
+   $ bundle exec rake db:migrate
 
 
 === Setting Up The Application
@@ -67,50 +45,14 @@ The next step is to load default Fat Free CRM settings, such as menu structures,
 default colors, etc. and create the Admin user. This is done by running the
 following rake task:
 
-   $ rake crm:setup
-
-
-=== Loading Demo Data
-
-You can test drive Fat Free CRM by loading sample records that are generated
-on the fly mimic the actual use. IMPORTANT: loading demo will delete all the
-existing data.
-
-   $ rake crm:demo:load
-
-Among other things the demo generator creates 8 sample user records with the
-following usernames: +aaron+, +ben+, +cindy+, +dan+, +elizabeth+, +frank+, +george+,
-and +heather+. You can log in with any of these names using the name as password.
-The demo site at http://demo.fatfreecrm.com provides access as a sample user as well.
-
-You can reset the database and reload demo data at any time by using:
-
-   $ rake crm:demo:reload
-
+   $ bundle exec rake crm:setup
 
 === Running The App
 
 Now you should be able to launch the Rails server and point your web browser
 to http://localhost:3000
 
-   $ ruby script/server
-
-When deploying with Phusion Passenger, also install Rack 1.0.1:
-
-   $ gem install rack -v 1.0.1
-
-
-=== Resources
-
-* Home page: http://www.fatfreecrm.com
-* Online demo: http://demo.fatfreecrm.com
-* Project page: http://github.com/michaeldv/fat_free_crm/tree/master
-* Features and bugs: http://fatfreecrm.lighthouseapp.com
-* Twitter commit updates: http://twitter.com/fatfreecrm
-* Discussion group for users: http://groups.google.com/group/fat-free-crm-users
-* Discussion group for developers: http://groups.google.com/group/fat-free-crm-dev
-* IRC channel: #fatfreecrm on irc.freenode.net
-
+   $ rails server
 
 === For Developers
 
@@ -126,7 +68,7 @@ the concepts:
 
 === License
 
-Copyright (c) 2008-2011 by Michael Dvorkin. All rights reserved.
+Copyright (c) 2008-2011 by Michael Dvorkin and Warut Surapat. All rights reserved.
 
 This program is free software: you can redistribute it and/or modify it
 under the terms of the GNU Affero General Public License as published by
