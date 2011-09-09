@@ -1,0 +1,10 @@
+- view   ||= controller.controller_name
+- action ||= controller.action_name
+- sidebar = "#{view}/sidebar_#{action}"
+- sidebar = "admin/#{sidebar}" if controller.class.to_s.starts_with?("Admin::")
+
+= content_for :sidebar
+- begin
+  = render sidebar
+  - rescue MissingTemplate
+= render "common/recently"

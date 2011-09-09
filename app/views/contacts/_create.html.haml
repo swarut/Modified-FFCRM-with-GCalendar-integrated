@@ -1,0 +1,15 @@
+= form_for(@contact, :html => one_submit_only(:contact), :remote => true) do |f|
+  = link_to_close new_contact_path
+  = f.hidden_field :user_id
+  = hidden_field_tag "opportunity", "#{@opportunity.id if @opportunity}"
+
+  = f.error_messages :object_name => t('contact')
+
+  = render "contacts/top_section", :f => f
+  = render "contacts/extra",       :f => f
+  = render "contacts/web",         :f => f
+  = render "contacts/permissions", :f => f
+  .buttonbar
+    = f.submit t(:create_contact), :onclick => "crm.create_contact()"
+    #{t :or}
+    = link_to_cancel new_contact_path

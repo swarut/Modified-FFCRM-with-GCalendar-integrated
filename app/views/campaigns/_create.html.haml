@@ -1,0 +1,14 @@
+= form_for(@campaign, :html => one_submit_only(:campaign), :remote => true) do |f|
+  = link_to_close new_campaign_path
+  = f.hidden_field :user_id
+
+  = f.error_messages :object_name => t('campaign')
+
+  = render "campaigns/top_section", :f => f
+  = render "campaigns/objectives",  :f => f
+  = render "campaigns/permissions", :f => f
+
+  .buttonbar
+    = f.submit t(:create_campaign)
+    #{t :or}
+    = link_to_cancel new_campaign_path

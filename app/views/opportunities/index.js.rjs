@@ -1,0 +1,6 @@
+unless @opportunities.blank?
+  page[:opportunities].replace_html render @opportunities
+else
+  page[:opportunities].replace_html :partial => "common/empty"
+end
+page[:paginate].replace_html :partial => "common/paginate"

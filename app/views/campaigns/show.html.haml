@@ -1,0 +1,34 @@
+= styles_for :task, :lead, :opportunity
+
+#confirm{ hidden }
+.title_tools#menu
+  = link_to_inline(:edit_campaign, edit_campaign_path(@campaign), :text => t(:edit)) + " | "
+  = link_to_function(t(:delete) + '?', confirm_delete(@campaign))
+.title#edit_campaign_title= h(@campaign.name)
+
+%div#edit_campaign{ hidden }
+
+= render "comments/new", :commentable => @campaign
+= render :partial => "common/timeline", :collection => @timeline
+
+= section(@campaign, :tasks)
+.log#tasks
+  = render "common/tasks"
+
+= section(@campaign, :leads)
+.list#leads
+  - @leads = @campaign.leads.paginate(:page => 1, :per_page => 20)
+  = render :partial => "leads/lead", :collection => @campaign.leads.paginate(:page => 1, :per_page => 20)
+= will_paginate @leads, :id => true, :params => {:action => :leads}
+
+%br( style="clear:both" )
+
+= section(@campaign, :opportunities)
+.list#opportunities
+  - @opportunities = @campaign.opportunities.paginate(:page => 1, :per_page => 20)
+  = render :partial => "opportunities/opportunity", :collection => @campaign.opportunities.paginate(:page => 1, :per_page => 20)
+= will_paginate @opportunities, :id => true, :params => {:action => :opportunities}
+
+= load_select_popups_for(@campaign, :tasks, :leads, :opportunities)
+
+= hook(:show_campaign_bottom, self)

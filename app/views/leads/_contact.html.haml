@@ -1,0 +1,38 @@
+- edit ||= false
+- collapsed = session[:lead_contact].nil? # && @lead.errors.empty?
+= subtitle :lead_contact, collapsed, t(:contact_info)
+.section
+  %small#lead_contact_intro{ hidden_if(!collapsed) }
+    = t(:intro, t(:lead_info_small)) unless edit
+  #lead_contact{ hidden_if(collapsed) }
+    %table
+      %tr
+        %td
+          .label.top #{t :job_title}:
+          = f.text_field :title
+        %td= spacer
+        %td
+          .label.top #{t :company}:
+          = f.text_field :company
+      %tr
+        %td
+          .label #{t :alt_email}:
+          = f.text_field :alt_email
+        %td= spacer
+        %td
+          .label #{t :mobile}:
+          = f.text_field :mobile
+      %tr
+        %td
+          = render "common/address", :f => f, :asset => @lead, :type => 'business', :title => :address
+        %td= spacer
+        %td
+          .label #{t :referred_by}:
+          = f.text_field :referred_by
+          %div{:style => "margin-top:6px"}
+            .check_box
+              = f.check_box :do_not_call, {}, true
+              #{t :do_not_call}
+
+
+

@@ -1,0 +1,6 @@
+unless @leads.blank?
+  page[:leads].replace_html render @leads
+else
+  page[:leads].replace_html :partial => "common/empty"
+end
+page[:paginate].replace_html :partial => "common/paginate"
