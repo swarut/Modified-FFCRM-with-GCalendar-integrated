@@ -54,17 +54,6 @@ to http://localhost:3000
 
    $ rails server
 
-=== For Developers
-
-Fat Free CRM can be customized by implementing callback hooks and extended by
-creating Rails Engines plugins. Check out these sample repositories demonstrating
-the concepts:
-
-   http://github.com/michaeldv/crm_sample_plugin/tree/master
-   http://github.com/michaeldv/crm_sample_tabs/tree/master
-   http://github.com/michaeldv/crm_web_to_lead/tree/master
-   http://github.com/michaeldv/crm_tags/tree/master
-
 
 === License
 
