@@ -247,7 +247,9 @@ class Task < ActiveRecord::Base
   #----------------------------------------------------------------------------
   def parse_calendar_date
     if(calendar)
-      converted_time = Time.parse(calendar)
+      date,time,h = calendar.split(" ")
+      month,day,year = date.split("/")
+      converted_time = Time.parse("#{year}/#{month}/#{day} #{time} #{h}")
       return converted_time.utc
     else
       return self.due_at

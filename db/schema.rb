@@ -322,7 +322,6 @@ ActiveRecord::Schema.define(:version => 20110909085956) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "background_info"
-    t.integer  "gcal_added",                    :default => 0
     t.integer  "sms_sent",                      :default => 0
     t.string   "gcal_id"
   end

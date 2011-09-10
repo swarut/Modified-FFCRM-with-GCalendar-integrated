@@ -14,6 +14,7 @@ class CrmGoogleCalendarModelHooks < FatFreeCRM::Callback::Base
            event = GCal4Ruby::Event.new(cal.service, {:title => get_title, :calendar => cal})
            set_event(event)
            if event.save
+             puts "::::::::::::::: Save event to google calendar"
              gcal_id = event.id
              self.gcal_id = gcal_id
              if self.save
